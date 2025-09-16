@@ -31,9 +31,8 @@ public class Usuario {
     //column - configura a coluna
     //name- nome da coluna
     //nullable- se pode ser nulo ou nao
-    @Column(name = "tipo_usuario_id", nullable = false)
+    @Column(name = "usuario_id", nullable = false)
     private Integer usuarioId;
-
 
     @Column(name = "nome_completo", nullable = false)
     private String nomeCompleto;
@@ -43,6 +42,18 @@ public class Usuario {
 
     @Column(name = "senha", nullable = false)
     private String senha;
+
+
+    //Muitos Usuarios para um Tipo Usuario
+    //FetchType.Eager - carrega os dados juntos
+    //Optional - Se e obrigatorio ou nao
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    // Avisar para o Java , qual coluna do tipo usuario  que vou relacionar
+
+    @JoinColumn(name = "tipo_usuario_id")
+    private TipoUsuario tipoUsuario;
+
+
 
 
 }
