@@ -33,10 +33,10 @@ public class Veiculos {
     //name- nome da coluna
     //nullable se pode ser nulo ou nao
 
-    @Column(name= "identificador_unico", nullable = false)
-    private Integer identificadorUnico;
+    @Column(name= "veiculo_id", nullable = false)
+    private Integer veiculoId;
 
-    @Column(name = "placa", nullable = false, unique = true , length = 10)
+    @Column(name = "placa", nullable = false, unique = true , columnDefinition = "text")
     private String placa;
 
     @Column(name = "modelo", nullable = false, columnDefinition = "text")
