@@ -19,7 +19,7 @@ public class TipoUsuarioService {
         this.tipoUsuarioRepository = tipoUsuarioRepository;
     }
     //Listar todos os Usuarios
-    public List<TipoUsuario> listarTodos(){
+    public  List<TipoUsuario> listarTodos(){
         return tipoUsuarioRepository.findAll();
     }
 
@@ -40,15 +40,15 @@ public class TipoUsuarioService {
             return null;
         }
         tipoUsuarioAntigo.setDescricao(tipoUsuarioNovo.getDescricao());
-        return TipoUsuarioRepository.save(tipoUsuarioAntigo);
+        return tipoUsuarioRepository.save(tipoUsuarioAntigo);
     }
-    public TipoUsuarioRepository deletePorId(Integer id){
-        TipoUsuario Tipo = buscarPorId(id);
+    public TipoUsuario deletar(Integer id){
+        TipoUsuario tipoUsuarioAntigo = buscarPorId(id);
 
         if(tipoUsuarioAntigo == null){
             return null;
         }
-        TipoUsuarioRepository.delete(tipoUsuarioAntigo);
+        tipoUsuarioRepository.delete(tipoUsuarioAntigo);
         return tipoUsuarioAntigo;
     }
 
