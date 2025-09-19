@@ -64,7 +64,19 @@ public class TipoUsuarioControler {
         }
         return ResponseEntity.ok(tipoUsuarioAtualizado);
 
-       
+
+    }
+    //Deletar
+    @DeleteMapping
+
+    public ResponseEntity<?> deletarTipoUsuario(@PathVariable Integer id){
+        TipoUsuario deletado = tipoUsuarioService.deletar(id);
+        if(deletado == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).
+                    body("Tipos de usuario nao encontrados");
+
+        }
+        return ResponseEntity.ok("Tipo usuario deletado com sucesso");
     }
 
 

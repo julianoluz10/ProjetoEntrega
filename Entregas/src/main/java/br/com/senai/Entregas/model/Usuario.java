@@ -6,6 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 //Lombok
 @Getter
@@ -21,7 +27,7 @@ import lombok.Setter;
 //Table-Permite que voce configure a tabela
 @Table(name = "usuario")
 
-public class Usuario {
+public class Usuario implements UserDetails {
 
     //ID-define que e chave primaria
     @Id
@@ -54,6 +60,38 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of( new SimpleGrantedAuthority(tipoUsuario.getDescricao()) );
+    }
 
+    @Override
+    public String getPassword() {
+        return senha;
+    }
 
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

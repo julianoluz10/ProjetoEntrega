@@ -18,8 +18,9 @@ public class TipoUsuarioService {
     public TipoUsuarioService(TipoUsuarioRepository tipoUsuarioRepository) {
         this.tipoUsuarioRepository = tipoUsuarioRepository;
     }
-    //Listar todos os Usuarios
+    //Listar todos os TiposUsuarios
     public  List<TipoUsuario> listarTodos(){
+
         return tipoUsuarioRepository.findAll();
     }
 
@@ -30,6 +31,7 @@ public class TipoUsuarioService {
     }
 
     public TipoUsuario cadastrar(TipoUsuario tipoUsuario){
+
         return tipoUsuarioRepository.save(tipoUsuario);
     }
 
